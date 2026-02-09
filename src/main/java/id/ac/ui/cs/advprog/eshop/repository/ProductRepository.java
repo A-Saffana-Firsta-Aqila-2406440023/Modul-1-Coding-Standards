@@ -21,16 +21,22 @@ public class ProductRepository {
         return product;
     }
 
-    public Product edit(Product product) {
+    public Product edit(Product productToEdit) {
         for (int index = 0; index < productData.size(); index++) {
-            String existingProductId = productData.get(index).getProductId();
+            Product product = productData.get(index);
 
-            if (existingProductId.equals(product.getProductId())) {
-                productData.set(index, product);
-                return product;
+            if (product.getProductId().equals(productToEdit.getProductId())) {
+                productData.set(index, productToEdit);
+                return productToEdit;
             }
         }
         return null;
+    }
+
+    public Product delete(String id) {
+        Product product = findById(id);
+        productData.remove(product);
+        return product;
     }
 
     public Iterator<Product> findAll() {

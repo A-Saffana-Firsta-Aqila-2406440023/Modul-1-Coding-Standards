@@ -21,12 +21,51 @@ class ProductTest {
     }
 
     @Test
+    void testGetProductIdInvalid() {
+        assertNotEquals("wrong-id", this.product.getProductId());
+    }
+
+    @Test
     void testGetProductName() {
         assertEquals("Sampo Cap Bambang", this.product.getProductName());
     }
 
     @Test
+    void testGetProductNameInvalid() {
+        assertNotEquals("Sampo dove", this.product.getProductName());
+    }
+
+    @Test
+    void testGetProductNameEmpty() {
+        this.product.setProductName("");
+        assertEquals("", this.product.getProductName());
+    }
+
+    @Test
+    void testGetProductNameNull() {
+        this.product.setProductName(null);
+        assertNull(this.product.getProductName());
+    }
+
+    @Test
     void testGetProductQuantity() {
         assertEquals(100, this.product.getProductQuantity());
+    }
+
+    @Test
+    void testGetProductQuantityInvalid() {
+        assertNotEquals("50", this.product.getProductQuantity());
+    }
+
+    @Test
+    void testGetProductQuantityNegative() {
+        this.product.setProductQuantity(-50);
+        assertEquals(-50, this.product.getProductQuantity());
+    }
+
+    @Test
+    void testGetProductQuantityZero() {
+        this.product.setProductQuantity(0);
+        assertEquals(0, this.product.getProductQuantity());
     }
 }
